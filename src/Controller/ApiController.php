@@ -187,24 +187,26 @@ class ApiController extends AbstractController
             $compt = new Depot();
             if ($values->montant >= 75000) {
                 $compt->setMontant($values->montant);
-            }
+
                 $compt->setDate(new \DateTime());
                 $rec = $this->getDoctrine()->getRepository(Compte::class)->findOneBy(['numbcompte'=>$values->numbcompte]);
                 $compt->setIdcompte($rec);
-                $rec->setSolde($rec->getSolde() + $values->montant);
+                $rec->setSolde($rec->getSolde() + $values->montant);          
+                
+                $entityManager->persist($compt);
+                $entityManager->flush();
+                $data = [
+                    'stat' => 201,
+                    'sms' => 'depot reussie'
+                ];
+                return new JsonResponse($data, 201);
+            }
                 $errors = $validator->validate($compt);
                 if (count($errors)) {
                     $errors = $serializer->serialize($errors, 'json');
                     return new Response($errors, 500);
                 }
-            
-            $entityManager->persist($compt);
-            $entityManager->flush();
-            $data = [
-                'stat' => 201,
-                'sms' => 'depot reussie'
-            ];
-            return new JsonResponse($data, 201);
+          
         }
         $data = [
             'sta' => 500,
@@ -260,7 +262,7 @@ class ApiController extends AbstractController
     {
         $values = json_decode($request->getContent());
         $user = $userRepo->findOneByUsername($values->username);
-        if ($user->getStatus() == "debloquer") {
+        if ($user->getStatus()=="debloquer") {
             $user->SetStatus("bloquer");
             $user->SetRoles(["ROLE_USERLOCK"]);
             $entityManager->flush();

@@ -413,6 +413,6 @@ class __TwigTemplate_13cc3f5c9e4c1b5b7cfeea48031da19b75f361d3acc4cd4f1fcca17a0f6
 {% block body %}
     {% include '@Twig/Exception/exception.html.twig' %}
 {% endblock %}
-", "@Twig/Exception/exception_full.html.twig", "/home/rokhayadiop/Documents/symfony/api_symfony/vendor/symfony/twig-bundle/Resources/views/Exception/exception_full.html.twig");
+", "@Twig/Exception/exception_full.html.twig", "/home/rokhayadiop/Bureau/sprint1/evaluation2/vendor/symfony/twig-bundle/Resources/views/Exception/exception_full.html.twig");
     }
 }

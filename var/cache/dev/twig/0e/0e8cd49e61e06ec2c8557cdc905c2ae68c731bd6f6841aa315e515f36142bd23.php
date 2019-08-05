@@ -490,6 +490,6 @@ class __TwigTemplate_69b2a0dd10188bc042ae8637125b49dce587679757b551fc26cf68a443b
         {% endif %}
     </div>
 </div>
-", "@Twig/Exception/exception.html.twig", "/home/rokhayadiop/Documents/symfony/api_symfony/vendor/symfony/twig-bundle/Resources/views/Exception/exception.html.twig");
+", "@Twig/Exception/exception.html.twig", "/home/rokhayadiop/Bureau/sprint1/evaluation2/vendor/symfony/twig-bundle/Resources/views/Exception/exception.html.twig");
     }
 }

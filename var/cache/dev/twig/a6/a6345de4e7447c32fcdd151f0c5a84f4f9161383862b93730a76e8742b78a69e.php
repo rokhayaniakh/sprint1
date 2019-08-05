@@ -189,6 +189,6 @@ class __TwigTemplate_c541591ccde0ae89ec1721d6c3bb4f0f4bdac2aadd69e6ce3f37f600efb
         </div>
     </div>
 </div>
-", "@Twig/Exception/traces.html.twig", "/home/rokhayadiop/Documents/symfony/api_symfony/vendor/symfony/twig-bundle/Resources/views/Exception/traces.html.twig");
+", "@Twig/Exception/traces.html.twig", "/home/rokhayadiop/Bureau/sprint1/evaluation2/vendor/symfony/twig-bundle/Resources/views/Exception/traces.html.twig");
     }
 }

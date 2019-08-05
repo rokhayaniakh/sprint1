@@ -62,12 +62,12 @@ class User implements UserInterface
     private $status;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\partenaire", inversedBy="users")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Partenaire", inversedBy="users")
      */
     private $idpartenaire;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\compte", inversedBy="users")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Compte", inversedBy="users")
      */
     private $idcompte;
 
