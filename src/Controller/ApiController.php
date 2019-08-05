@@ -187,6 +187,7 @@ class ApiController extends AbstractController
             $compt = new Depot();
             if ($values->montant >= 75000) {
                 $compt->setMontant($values->montant);
+            }
                 $compt->setDate(new \DateTime());
                 $rec = $this->getDoctrine()->getRepository(Compte::class)->findOneBy(['numbcompte'=>$values->numbcompte]);
                 $compt->setIdcompte($rec);
@@ -196,7 +197,7 @@ class ApiController extends AbstractController
                     $errors = $serializer->serialize($errors, 'json');
                     return new Response($errors, 500);
                 }
-            }
+            
             $entityManager->persist($compt);
             $entityManager->flush();
             $data = [
