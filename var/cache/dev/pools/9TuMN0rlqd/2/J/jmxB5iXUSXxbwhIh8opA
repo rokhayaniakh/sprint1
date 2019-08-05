@@ -17,7 +17,7 @@ return $getExpiry ? PHP_INT_MAX : Hydrator::hydrate(
                 true,
             ],
             'message' => [
-                1 => 'blassdsdcd',
+                1 => 'veuillez deposer une somme supérieur ou égal à 75000',
             ],
             'value' => [
                 1 => 75000,

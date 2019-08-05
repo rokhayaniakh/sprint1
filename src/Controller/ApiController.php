@@ -40,16 +40,16 @@ class ApiController extends AbstractController
      * @Route("/ajoutp",name="ajout",methods={"POST"})
      * @IsGranted("ROLE_SUPER_ADMIN")
      */
-    public function ajoutp(Request $request, UserPasswordEncoderInterface $passwordEncoder, EntityManagerInterface $entityManager)
+    public function ajoutp(Request $request, UserPasswordEncoderInterface $passwordEncoder, EntityManagerInterface $entityManager, ValidatorInterface $validator, SerializerInterface $serializer)
     {
         $values = json_decode($request->getContent());
         $random = random_int(100000, 999999);
-        if (isset($values->rs, $values->ninea)) {
+        if (isset($values->rs) && strlen($values->ninea) == 8) {
             $us = new Partenaire();
             $us->setRs($values->rs);
             $us->setNinea($values->ninea);
             $us->setAdresse($values->adresse);
-            $us->setStatus($values->status);
+            $us->setStatus(strtolower($values->status));
 
             $com = new Compte();
             $com->setIdpartenaire($us);
@@ -61,6 +61,21 @@ class ApiController extends AbstractController
             $ad->setUsername($values->username);
             $ad->setRoles($us->getRoles());
             $ad->setPassword($passwordEncoder->encodePassword($ad, $values->password));
+            $errors = $validator->validate($us);
+            if (count($errors)) {
+                $errors = $serializer->serialize($errors, 'json');
+                return new Response($errors, 500, [
+                    'Content-Types' => 'applicatio/json'
+                ]);
+            }
+
+            $errors = $validator->validate($ad);
+            if (count($errors)) {
+                $errors = $serializer->serialize($errors, 'json');
+                return new Response($errors, 500, [
+                    'Content-Type' => 'application/json'
+                ]);
+            }
             $entityManager->persist($com);
             $entityManager->persist($ad);
             $entityManager->persist($us);
@@ -185,28 +200,32 @@ class ApiController extends AbstractController
         $values = json_decode($request->getContent());
         if (isset($values->montant)) {
             $compt = new Depot();
-            if ($values->montant >= 75000) {
-                $compt->setMontant($values->montant);
-
-                $compt->setDate(new \DateTime());
-                $rec = $this->getDoctrine()->getRepository(Compte::class)->findOneBy(['numbcompte'=>$values->numbcompte]);
-                $compt->setIdcompte($rec);
-                $rec->setSolde($rec->getSolde() + $values->montant);          
-                
-                $entityManager->persist($compt);
-                $entityManager->flush();
-                $data = [
-                    'stat' => 201,
-                    'sms' => 'depot reussie'
-                ];
-                return new JsonResponse($data, 201);
+            $compt->setMontant($values->montant);
+            $compt->setDate(new \DateTime());
+            $rec = $this->getDoctrine()->getRepository(Compte::class)->findOneBy(['numbcompte' => $values->numbcompte]);
+            $compt->setIdcompte($rec);
+            $rec->setSolde($rec->getSolde() + $values->montant);
+            $errors = $validator->validate($compt);
+            if (count($errors)) {
+                $errors = $serializer->serialize($errors, 'json');
+                return new Response($errors, 500, [
+                    'Content-Type' => 'application/json'
+                ]);
             }
-                $errors = $validator->validate($compt);
-                if (count($errors)) {
-                    $errors = $serializer->serialize($errors, 'json');
-                    return new Response($errors, 500);
-                }
-          
+
+            $entityManager->persist($compt);
+            $entityManager->flush();
+            $data = [
+                'stat' => 201,
+                'sms' => 'depot reussie'
+            ];
+            return new JsonResponse($data, 201);
+
+            $errors = $validator->validate($compt);
+            if (count($errors)) {
+                $errors = $serializer->serialize($errors, 'json');
+                return new Response($errors, 500);
+            }
         }
         $data = [
             'sta' => 500,
@@ -262,7 +281,7 @@ class ApiController extends AbstractController
     {
         $values = json_decode($request->getContent());
         $user = $userRepo->findOneByUsername($values->username);
-        if ($user->getStatus()=="debloquer") {
+        if ($user->getStatus() == "debloquer") {
             $user->SetStatus("bloquer");
             $user->SetRoles(["ROLE_USERLOCK"]);
             $entityManager->flush();

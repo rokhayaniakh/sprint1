@@ -482,6 +482,6 @@ class __TwigTemplate_6a159fe984cc53a981b91c90442a9c00c4d1f77a03271e9f5af7b8cfd5b
         {% endfor %}
     </table>
 {% endmacro %}
-", "@WebProfiler/Collector/events.html.twig", "/home/rokhayadiop/Documents/symfony/api_symfony/vendor/symfony/web-profiler-bundle/Resources/views/Collector/events.html.twig");
+", "@WebProfiler/Collector/events.html.twig", "/home/rokhayadiop/Bureau/sprint1/evaluation2/vendor/symfony/web-profiler-bundle/Resources/views/Collector/events.html.twig");
     }
 }

@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
@@ -23,6 +24,12 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Assert\Length(
+     *      min = 6,
+     *      max = 12,
+     *      minMessage = "Votre username doit comporter au moins {{8} caractères",
+     *      maxMessage = "Votre username ne peut pas contenir plus de {{10}} caractères"
+     * )
      */
     private $username;
 
@@ -43,11 +50,21 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Email(
+     *     message = "Email invalide ",
+     *     checkMX = true
+     * )
      */
     private $mail;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Length(
+     *      min = 9,
+     *      max = 9,
+     *      minMessage = "valeur minimum 9",
+     *      maxMessage = "valeur maximum 9"
+     * )
      */
     private $tel;
 
@@ -100,7 +117,11 @@ class User implements UserInterface
     {
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
+        if ($roles == 'ROLE_USER') {
+            $roles[] = 'ROLE_USER';
+        } else {
+            $roles[] = 'ROLE_ADMIN';
+        }
 
         return array_unique($roles);
     }
@@ -139,9 +160,7 @@ class User implements UserInterface
      * @see UserInterface
      */
     public function eraseCredentials()
-    {
-    
-    }
+    { }
 
     public function getNomcomplet(): ?string
     {

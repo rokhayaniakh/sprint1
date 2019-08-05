@@ -1782,6 +1782,14 @@
         <argument>2048</argument>
       </call>
       <call method="addListener">
+        <argument>console.command</argument>
+        <argument type="collection">
+          <argument type="service" id="debug.debug_handlers_listener"/>
+          <argument>configure</argument>
+        </argument>
+        <argument>2048</argument>
+      </call>
+      <call method="addListener">
         <argument>kernel.exception</argument>
         <argument type="collection">
           <argument type="service" id="debug.debug_handlers_listener"/>
@@ -5361,13 +5369,6 @@
         <argument>make:migration</argument>
       </call>
     </service>
-    <service id=".service_locator.JBoVXlr" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="entityManager" type="service" id="doctrine.orm.default_entity_manager"/>
-        <argument key="passwordEncoder" type="service" id="security.user_password_encoder.generic"/>
-      </argument>
-    </service>
     <service id=".service_locator.H3qnu8f" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -5401,17 +5402,17 @@
         <argument key="userRepo" type="service" id="App\Repository\UserRepository"/>
       </argument>
     </service>
-    <service id=".service_locator.MZxqfLP" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.ndYZ51c" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
-        <argument key="App\Controller\ApiController::ajoutp" type="service" id=".service_locator.JBoVXlr"/>
+        <argument key="App\Controller\ApiController::ajoutp" type="service" id=".service_locator.H3qnu8f"/>
         <argument key="App\Controller\ApiController::bloquerdebloquer" type="service" id=".service_locator.U2OyWts"/>
         <argument key="App\Controller\ApiController::depot" type="service" id=".service_locator.H3qnu8f"/>
         <argument key="App\Controller\ApiController::register" type="service" id=".service_locator.H3qnu8f"/>
         <argument key="App\Controller\ApiController::show" type="service" id=".service_locator.iW_buO_"/>
         <argument key="App\Controller\ApiController::superadmin" type="service" id=".service_locator.H3qnu8f"/>
         <argument key="App\Controller\ApiController::update" type="service" id=".service_locator.fDbIXxi"/>
-        <argument key="App\Controller\ApiController:ajoutp" type="service" id=".service_locator.JBoVXlr"/>
+        <argument key="App\Controller\ApiController:ajoutp" type="service" id=".service_locator.H3qnu8f"/>
         <argument key="App\Controller\ApiController:bloquerdebloquer" type="service" id=".service_locator.U2OyWts"/>
         <argument key="App\Controller\ApiController:depot" type="service" id=".service_locator.H3qnu8f"/>
         <argument key="App\Controller\ApiController:register" type="service" id=".service_locator.H3qnu8f"/>
@@ -5673,12 +5674,12 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" public="false">
-      <argument type="service" id=".service_locator.MZxqfLP"/>
+      <argument type="service" id=".service_locator.ndYZ51c"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" public="false"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver" public="false"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver" public="false">
-      <argument type="service" id=".service_locator.MZxqfLP"/>
+      <argument type="service" id=".service_locator.ndYZ51c"/>
     </service>
     <service id="api_platform.swagger.normalizer.api_gateway.inner" class="ApiPlatform\Core\Swagger\Serializer\DocumentationNormalizer" public="false">
       <argument type="service" id="api_platform.metadata.resource.metadata_factory.cached"/>
@@ -6164,7 +6165,7 @@
     <service id="Vich\UploaderBundle\Form\Type\VichImageType" alias="vich_uploader.form.type.image" public="false"/>
     <service id="Vich\UploaderBundle\Templating\Helper\UploaderHelper" alias="vich_uploader.templating.helper.uploader_helper" public="false"/>
     <service id="Vich\UploaderBundle\Twig\Extension\UploaderExtension" alias="vich_uploader.twig.extension.uploader" public="false"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.MZxqfLP"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.ndYZ51c"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem" public="false"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="api_platform.name_converter" alias="serializer.name_converter.metadata_aware"/>

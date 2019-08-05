@@ -222,6 +222,6 @@ class __TwigTemplate_5a2ee7ca3e5a42e19ab6b4560012473c369f622ea8b5bcee59ea23e3180
         </div>
     {% endif %}
 {% endblock %}
-", "@WebProfiler/Collector/exception.html.twig", "/home/rokhayadiop/Documents/symfony/api_symfony/vendor/symfony/web-profiler-bundle/Resources/views/Collector/exception.html.twig");
+", "@WebProfiler/Collector/exception.html.twig", "/home/rokhayadiop/Bureau/sprint1/evaluation2/vendor/symfony/web-profiler-bundle/Resources/views/Collector/exception.html.twig");
     }
 }

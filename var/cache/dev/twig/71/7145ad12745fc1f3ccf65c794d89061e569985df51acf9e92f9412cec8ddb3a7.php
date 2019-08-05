@@ -79,6 +79,6 @@ class __TwigTemplate_105e2f20c76c1a4c24b2df9e81deb985ef7a2e1e3107489b18944aff711
 {{ status_code }} {{ status_text }}
 
 */
-", "@Twig/Exception/error.css.twig", "/home/rokhayadiop/Documents/symfony/api_symfony/vendor/symfony/twig-bundle/Resources/views/Exception/error.css.twig");
+", "@Twig/Exception/error.css.twig", "/home/rokhayadiop/Bureau/sprint1/evaluation2/vendor/symfony/twig-bundle/Resources/views/Exception/error.css.twig");
     }
 }

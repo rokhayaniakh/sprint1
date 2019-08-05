@@ -4,7 +4,8 @@ namespace Symfony\Component\VarExporter\Internal;
 
 return $getExpiry ? PHP_INT_MAX : Hydrator::hydrate(
     $o = [
-        clone (Registry::$prototypes['Doctrine\\ORM\\Mapping\\Column'] ?? Registry::p('Doctrine\\ORM\\Mapping\\Column')),
+        clone (($p = &Registry::$prototypes)['Doctrine\\ORM\\Mapping\\Column'] ?? Registry::p('Doctrine\\ORM\\Mapping\\Column')),
+        clone ($p['Symfony\\Component\\Validator\\Constraints\\NotBlank'] ?? Registry::p('Symfony\\Component\\Validator\\Constraints\\NotBlank')),
     ],
     null,
     [
@@ -15,10 +16,19 @@ return $getExpiry ? PHP_INT_MAX : Hydrator::hydrate(
             'nullable' => [
                 true,
             ],
+            'message' => [
+                1 => 'Le champ ne doit pas être vide',
+            ],
+            'groups' => [
+                1 => [
+                    'Default',
+                ],
+            ],
         ],
     ],
     [
         $o[0],
+        $o[1],
     ],
     []
 );

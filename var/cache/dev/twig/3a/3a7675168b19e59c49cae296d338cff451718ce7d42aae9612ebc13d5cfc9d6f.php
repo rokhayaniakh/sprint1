@@ -63,6 +63,6 @@ class __TwigTemplate_8e3234c63cd24400bf79f007c71b1da19d62486b8874ccaf98ae09d7357
     public function getSourceContext()
     {
         return new Source("<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"#AAA\" d=\"M21.1 18.3c.8.8.8 2 0 2.8-.4.4-.9.6-1.4.6s-1-.2-1.4-.6L12 14.8l-6.3 6.3c-.4.4-.9.6-1.4.6s-1-.2-1.4-.6a2 2 0 0 1 0-2.8L9.2 12 2.9 5.7a2 2 0 0 1 0-2.8 2 2 0 0 1 2.8 0L12 9.2l6.3-6.3a2 2 0 0 1 2.8 0c.8.8.8 2 0 2.8L14.8 12l6.3 6.3z\"/></svg>
-", "@WebProfiler/Icon/close.svg", "/home/rokhayadiop/Documents/symfony/api_symfony/vendor/symfony/web-profiler-bundle/Resources/views/Icon/close.svg");
+", "@WebProfiler/Icon/close.svg", "/home/rokhayadiop/Bureau/sprint1/evaluation2/vendor/symfony/web-profiler-bundle/Resources/views/Icon/close.svg");
     }
 }

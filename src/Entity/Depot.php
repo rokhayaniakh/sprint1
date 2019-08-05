@@ -21,9 +21,8 @@ class Depot
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * /**
      * @Assert\GreaterThanOrEqual(
-     *     value = 75000, message="blassdsdcd"
+     *  value = 75000, message="veuillez deposer une somme supérieur ou égal à 75000"
      * )
      */
     private $montant;
