@@ -49,7 +49,7 @@ class ApiController extends AbstractController
             $us->setRs($values->rs);
             $us->setNinea($values->ninea);
             $us->setAdresse($values->adresse);
-            $us->setStatus("debloque");
+            $us->setStatus($values->status);
 
             $com = new Compte();
             $com->setIdpartenaire($us);

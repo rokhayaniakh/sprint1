@@ -1,7 +1,7 @@
 security:
     encoders:
         App\Entity\User:
-            algorithm: auto
+            algorithm: argon2i
 
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
@@ -24,7 +24,6 @@ security:
                 failure_handler:          lexik_jwt_authentication.handler.authentication_failure
 
         api:
-            http_basic: ~
             pattern:   ^/api
             stateless: true
             guard:
